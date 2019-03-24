@@ -23,6 +23,6 @@ app.post('/login', (req, res) => {
       else res.sendStatus(401)
     })
 })
-app.listen(7555, () => {
+app.listen(3000, () => {
   console.log('Server running on http://localhost:7555')
 })
