@@ -1,6 +1,11 @@
+const knex = require('knex')(require('./knexfile'))
+
 module.exports = {
-  createUser (input) {
-    console.log(`Add user ${input.username} with password ${input.password}`)
-    return Promise.resolve()
+  createUser ({ username, password }) {
+    console.log(`Add user ${username} with password ${password}`)
+    return knex('user').insert({
+      username,
+      password
+    })
   }
 }
