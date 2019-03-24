@@ -8,7 +8,7 @@ module.exports = {
       salt,
       encrypted_password: hash,
       username
-    })
+    }).debug()
   },
   authenticate ({ username, password }) {
     console.log(`Authenticating user ${username}`)
