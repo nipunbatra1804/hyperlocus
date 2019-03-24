@@ -19,7 +19,10 @@
   },
   "homepage": "https://github.com/adityaswami93/hyperlocus#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0"
   },
   "devDependencies": {
     "pm2": "^3.4.0"
