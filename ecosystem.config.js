@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-18-136-207-103.ap-southeast-1.compute.amazonaws.com',
+      host: 'ec2-52-74-35-245.ap-southeast-1.compute.amazonaws.com',
       key: '/Users/adityaswami/Desktop/cs5224project.pem',
       ref: 'origin/master',
       repo: 'git@github.com:adityaswami93/hyperlocus.git',
