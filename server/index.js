@@ -2,6 +2,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const store = require('./store')
 const app = express()
+
+const APP_PORT = 4000;
+
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.post('/createUser', (req, res) => {
@@ -25,6 +28,6 @@ app.post('/login', (req, res) => {
     })
 }) 
 
-app.listen(3000, () => {
+app.listen(APP_PORT, () => {
   console.log('Server running on http://localhost:3000')
 })
