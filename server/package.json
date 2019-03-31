@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy ecosystem.config.js production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://adityaswami93@github.com/adityaswami93/hyperlocus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adityaswami93/hyperlocus/issues"
+  },
+  "homepage": "https://github.com/adityaswami93/hyperlocus#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0",
+    "pg": "^7.9.0"
+  },
+  "devDependencies": {
+    "pm2": "^3.4.0"
+  }
+}

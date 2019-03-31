@@ -1,0 +1,21 @@
+.bg {
+  /* The image used */
+  background-image: url("../../data/singapore-scenic-backdrop.jpg");
+  width: 100%;
+  height: 600px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.btn-group {
+  display: flex;
+}
+.btn {
+  flex-grow: 1;
+}
+
+.transparent-input {
+  background: tranparent;
+}
