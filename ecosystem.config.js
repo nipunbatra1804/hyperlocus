@@ -28,7 +28,7 @@ module.exports = {
       key: '/Users/adityaswami/Desktop/cs5224project.pem',
       ref: 'origin/master',
       repo: 'git@github.com:adityaswami93/hyperlocus.git',
-      path: '/var/www/hyperlocus',
+      path: '/home/ubuntu/hyperlocus',
       'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
