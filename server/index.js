@@ -37,5 +37,5 @@ app.get('/estate/:id', (req, res) => {
 })
 
 app.listen(APP_PORT, () => {
-  console.log('Server running on http://localhost:3000')
+  console.log('Server running on http://localhost:' + APP_PORT)
 })
