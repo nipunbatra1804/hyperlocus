@@ -11,8 +11,10 @@ module.exports = {
     }
   },
   {
-    name       : "hyperlocus-client",
-    script     : "./client/src/index.js",
+    name          : 'hyperlocus-client',
+    script        : 'npx',
+    interpreter   : 'none',
+    args          : 'serve build -s',
     watch       : true,
     env: {
       "NODE_ENV": "development",
