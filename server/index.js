@@ -26,7 +26,15 @@ app.post('/login', (req, res) => {
       if (success) res.sendStatus(200)
       else res.sendStatus(401)
     })
-}) 
+})
+
+app.get('/estate/:id', (req, res) => {
+  store
+  .then (( { success }) => {
+    if (success) res.send({})
+    else res.sendStatus(400)
+  })
+})
 
 app.listen(APP_PORT, () => {
   console.log('Server running on http://localhost:3000')
