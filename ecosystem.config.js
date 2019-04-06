@@ -17,8 +17,9 @@ module.exports = {
   {
     name      : 'hyperlocus-client',
     cwd       : './client',
-    script    : 'start.sh',
-    watch       : true,
+    script    : 'npm',
+    args      : 'run start',
+    watch     : true,
     env: {
       "NODE_ENV": "development",
     },
