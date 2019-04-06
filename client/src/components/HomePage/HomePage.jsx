@@ -23,9 +23,11 @@ function HomePage(props) {
 
   const handleClick = option => {
     getAddress(location).then(data => {
-      const long = data.location.lng;
-      const lat = data.location.lat;
-      props.history.push(`/explore/${long}/${lat}/${option.value}`);
+      if (data) {
+        const long = data.location.lng;
+        const lat = data.location.lat;
+        props.history.push(`/explore/${long}/${lat}/${option.value}`);
+      }
     });
   };
 

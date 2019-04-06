@@ -108,13 +108,12 @@ export default class ExplorePage extends Component {
     const { sites, selectedOption } = this.state;
     let filteredByOption =
       selectedOption && selectedOption.value !== "all"
-        ? sites.filter(
-            site =>
-              selectedOption.value.includes(site.type) &&
-              this.getDistance(site) < 500
-          )
+        ? sites.filter(site => selectedOption.value.includes(site.type))
         : sites;
 
+    filteredByOption = filteredByOption.filter(
+      site => this.getDistance(site) < 3000
+    );
     const compareFunc = this.getCompareFunction();
     filteredByOption.length > 2 && filteredByOption.sort(compareFunc);
     return filteredByOption;
@@ -149,7 +148,7 @@ export default class ExplorePage extends Component {
   };
 
   render() {
-    let { sites, options, popInfo, currentPosition } = this.state;
+    let { options, popInfo, currentPosition } = this.state;
     const filteredSites = this.filterAndSortRestaurantList();
 
     return (

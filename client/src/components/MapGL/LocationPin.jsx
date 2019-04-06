@@ -15,7 +15,6 @@ const getClassName = type => {
       return "fas fa-utensils";
     default:
       return "far fa-compass";
-    //<i class="fab fa-500px"></i>
   }
 };
 
