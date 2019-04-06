@@ -12,10 +12,9 @@ module.exports = {
     }
   },
   {
-    name      : 'hyperlocus-c',
+    name      : 'hyperlocus-client',
     cwd       : './client',
-    script    : 'npm',
-    args      : 'run start',
+    script    : 'start.sh',
     watch       : true,
     env: {
       "NODE_ENV": "development",
