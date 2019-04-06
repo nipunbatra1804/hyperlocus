@@ -1,7 +1,8 @@
 module.exports = {
   apps: [{
-    name: 'hyperlocus-server',
-    script: './server/index.js',
+    name  : 'hyperlocus-server',
+    cwd   : './server',
+    script  : 'index.js',
     watch       : true,
     env: {
       "NODE_ENV": "development",
@@ -11,16 +12,16 @@ module.exports = {
     }
   },
   {
-    name          : 'hyperlocus-client',
-    script        : 'npx',
-    interpreter   : 'none',
-    args          : 'serve build -s',
+    name      : 'hyperlocus-c',
+    cwd       : './client',
+    script    : 'npm',
+    args      : 'run start',
     watch       : true,
     env: {
       "NODE_ENV": "development",
     },
     env_production : {
-      "NODE_ENV": "production"
+      NODE_ENV: 'production'
     }
   }],
   deploy: {
