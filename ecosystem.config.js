@@ -2,12 +2,15 @@ module.exports = {
   apps: [{
     name  : 'hyperlocus-server',
     cwd   : './server',
-    script  : 'index.js',
+    script  : 'server.js',
     watch       : true,
     env: {
+      "PORT": 4000,
       "NODE_ENV": "development",
+      "DATABASE_URL": "hyperlocus.ctuxzjkhxcw0.ap-southeast-1.rds.amazonaws.com" 
     },
     env_production : {
+     "PORT": 4000,
      "NODE_ENV": "production"
     }
   },
