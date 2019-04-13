@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function PinTable({ pins, handleClick, handleTableLeave }) {
   const sortedList = pins.sort((first, second) => {
@@ -20,14 +21,20 @@ export default function PinTable({ pins, handleClick, handleTableLeave }) {
         <tbody>
           {sortedList.map((element, index) => (
             <tr key={index} data-testid="restaurant-table-row">
-              <td
-                onMouseEnter={() => handleClick(element)}
-                onMouseLeave={handleTableLeave}
-              >
-                {element.properties.name}
-              </td>
+              <td>{element.properties.name}</td>
               <td>{element.properties.address}</td>
               <td>{element.properties.postCode}</td>
+              <td>
+                <Link
+                  className="btn btn-primary btn-sm"
+                  to={`/create/${element.id}`}
+                >
+                  Edit
+                </Link>
+                <button className="btn btn-danger btn-sm" onClick={() => {}}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

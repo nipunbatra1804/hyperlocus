@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactMapGL, { NavigationControl, Marker, Popup } from "react-map-gl";
-import getSuperMarkets from "../../services/serviceSuperMarkets";
 import LocationPin from "./LocationPin";
 import PinInfo from "./PinInfo";
+import DeckGL, { GeoJsonLayer } from "deck.gl";
 const navStyle = {
   position: "absolute",
   top: 0,
@@ -83,6 +83,36 @@ export default class MapGL extends Component {
       )
     );
   };
+  _getLayer = town => {
+    return new GeoJsonLayer({
+      id: "geojson-layer",
+      data: {
+        type: "Feature",
+        geometry: {
+          type: "Polygon",
+          coordinates: town.location.coordinates
+        }
+      },
+      lineWidthScale: 4,
+      opacity: 0.4,
+      filled: true,
+      stroked: true,
+      lineWidth: 2,
+      lineColor: [255, 0, 0],
+      lineWidthMinPixels: 2,
+      wireframe: true,
+      getLineColor: f => [255, 0, 0],
+      getFillColor: f => [255, 0, 0, 0],
+      pickable: true,
+      onHover: info => console.log("Hovered:", info),
+      onClick: info => console.log("Clicked:", info)
+    });
+  };
+  _renderNeighborhood = (towns, viewport) => {
+    return (
+      <DeckGL {...viewport} layers={towns.map(town => this._getLayer(town))} />
+    );
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -100,18 +130,20 @@ export default class MapGL extends Component {
   }
 
   render() {
-    const { sites, popUp, position } = this.props;
+    const { sites, popUp, position, towns } = this.props;
     const { longitude, latitude } = position;
     //const { longitude, latitude } = this.state.viewport;
     const dropPing = sites.length > 0 ? true : false;
+    const { viewport } = this.state;
     return (
       <ReactMapGL
-        {...this.state.viewport}
+        {...viewport}
         height={600}
         width={550}
         onViewportChange={viewport => this.setState({ viewport })}
         mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
       >
+        {this._renderNeighborhood(towns, viewport)}
         {this._renderPosition(longitude, latitude)}
         {dropPing && sites.map(this._renderMarker)}
         {this._renderPopup()}

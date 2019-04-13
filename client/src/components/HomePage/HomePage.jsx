@@ -1,12 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getAddress } from "../../services/serviceGMapsGeocode";
 import "./HomePage.css";
-
-const styleComments = {
-  padding: "400",
-  maxidth: "400",
-  border: "solid"
-};
 
 function HomePage(props) {
   const options = [
@@ -23,11 +17,9 @@ function HomePage(props) {
 
   const handleClick = option => {
     getAddress(location).then(data => {
-      if (data) {
-        const long = data.location.lng;
-        const lat = data.location.lat;
-        props.history.push(`/explore/${long}/${lat}/${option.value}`);
-      }
+      const long = data.location.lng;
+      const lat = data.location.lat;
+      props.history.push(`/explore/${long}/${lat}/${option.value}`);
     });
   };
 

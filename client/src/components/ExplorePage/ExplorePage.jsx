@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import MapGL from "../MapGL/MapGL";
 import FilterMenu from "../FilterMenu/FilterMenu";
-import { getSuperMarkets } from "../../services/serviceSuperMarkets";
-import { getHawkerCenters } from "../../services/serviceHawkers";
-import { getClinics } from "../../services/serviceClinics";
+import { getOutlets } from "../../services/serviceOutlets";
+
 import PinTable from "../PinTable/PinTable";
 import geolib from "geolib";
+import { getTowns } from "../../services/serviceTowns";
 
 const sortOptions = [
   { name: "Distance", value: "distance" },
@@ -19,6 +19,7 @@ export default class ExplorePage extends Component {
     super(props);
     this.state = {
       sites: [],
+      towns: [],
       options: [
         { name: "All", value: "all" },
         { name: "Clinics", value: "clinics" },
@@ -41,10 +42,11 @@ export default class ExplorePage extends Component {
       if (this.state.sites.length > 0) {
         return;
       }
-      const superMarkets = await getSuperMarkets();
-      const clinics = await getClinics();
-      const hawkers = await getHawkerCenters();
-      this.setState({ sites: [...clinics, ...superMarkets, ...hawkers] });
+
+      const foodOutlets = await getOutlets();
+      const neighbourhoods = await getTowns();
+      console.log(neighbourhoods);
+      this.setState({ sites: [...foodOutlets], towns: [...neighbourhoods] });
       if (!(this.props.match.params.long && this.props.match.params.lat)) {
         this.geolocation();
       } else {
@@ -112,7 +114,7 @@ export default class ExplorePage extends Component {
         : sites;
 
     filteredByOption = filteredByOption.filter(
-      site => this.getDistance(site) < 3000
+      site => this.getDistance(site) < 50000
     );
     const compareFunc = this.getCompareFunction();
     filteredByOption.length > 2 && filteredByOption.sort(compareFunc);
@@ -148,22 +150,22 @@ export default class ExplorePage extends Component {
   };
 
   render() {
-    let { options, popInfo, currentPosition } = this.state;
+    let { options, popInfo, currentPosition, towns } = this.state;
     const filteredSites = this.filterAndSortRestaurantList();
-
     return (
       <div data-testid="explore-page">
         <Container>
           <Row>
-            <Col xs="6">
+            <Col md="12" lg="6">
               {" "}
               <MapGL
                 sites={filteredSites}
+                towns={towns}
                 popUp={popInfo}
                 position={currentPosition}
               />
             </Col>
-            <Col xs="6">
+            <Col md="12" lg="6">
               <FilterMenu
                 options={options}
                 selected={this.state.selectedOption}

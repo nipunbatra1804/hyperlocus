@@ -13,6 +13,8 @@ const getClassName = type => {
       return "fas fa-clinic-medical";
     case "hawkerCentre":
       return "fas fa-utensils";
+    case "foodOutlet":
+      return "fas fa-utensils";
     default:
       return "far fa-compass";
   }

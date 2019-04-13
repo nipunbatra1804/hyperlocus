@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import HomePage from "../HomePage/HomePage";
 import ExplorePage from "../ExplorePage/ExplorePage";
 import AdminPage from "../AdminPage/AdminPage";
+import CreatePage from "../CreatePage/CreatePage";
+import LoginPage from "../LoginPage/LoginPage";
 
 export default function AppPage() {
+  const [user, setUser] = useState("");
+  console.log(user);
   return (
     <BrowserRouter>
       <div>
-        <NavBar />
+        <NavBar username={user} />
         <Switch>
           <Route path="/home" component={HomePage} />
           <Route
@@ -18,9 +22,19 @@ export default function AppPage() {
           />
           <Route path="/explore" component={ExplorePage} />
           <Route path="/admin" component={AdminPage} />
+          <Route
+            path="/create/:id"
+            render={props => <CreatePage {...props} />}
+          />
+          <Route path="/create" component={CreatePage} />
+          <Route
+            path="/login"
+            render={props => <LoginPage {...props} updateUsername={setUser} />}
+          />
           <Redirect from="/" to="/home" />
         </Switch>
       </div>
     </BrowserRouter>
   );
 }
+//<Route path="/login" component={LoginPage} />

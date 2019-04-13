@@ -1,9 +1,8 @@
 import React from "react";
 import "./MapGL.scss";
-const tabletojson = require("tabletojson");
 
 export default function PinInfo(props) {
-  const { properties, type } = props;
+  const { properties } = props;
 
   return (
     <div style={{ fontSize: "8px" }}>
