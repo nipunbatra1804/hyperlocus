@@ -7,6 +7,7 @@ const createHealthOptions = async () => {
   const tags = await createTags();
   await Place.create(
     {
+      category: "health",
       name: "ChinaTown Clinic",
       type: "private hospital",
       address: "28 Kreta Ayer Road",
@@ -23,6 +24,7 @@ const createHealthOptions = async () => {
   ).then(rest => rest.addTags([tags.tagEmergency]));
   await Place.create(
     {
+      category: "health",
       name: "Clarke Hospital",
       type: "hospital",
       address: "1 Jalan Kukoh",
@@ -39,6 +41,7 @@ const createHealthOptions = async () => {
   ).then(rest => rest.addTags([tags.tagPharmacy, tags.tagCheap]));
   await Place.create(
     {
+      category: "health",
       name: "ThoughtCares",
       type: "clinic",
       address: "42/43 Pekin Street, FarEast Square",
@@ -57,6 +60,7 @@ const createHealthOptions = async () => {
 
   await Place.create(
     {
+      category: "health",
       name: "Googlie",
       type: "clinic",
       address: "20 Cross Street",

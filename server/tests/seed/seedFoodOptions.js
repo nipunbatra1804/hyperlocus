@@ -6,7 +6,7 @@ const createFoodOptions = async () => {
   const tags = await createTags();
   await Place.create(
     {
-      category: "Food",
+      category: "food",
       name: "Pizza Hut",
       type: "restaurant",
       address: "29 Kreta Ayer Road",
@@ -23,7 +23,7 @@ const createFoodOptions = async () => {
   ).then(rest => rest.addTags([tags.tagFastFood, tags.tagKids]));
   await Place.create(
     {
-      category: "Food",
+      category: "food",
       name: "rice garden",
       type: "stall",
       address: "1 Jalan Kukoh",
@@ -40,7 +40,7 @@ const createFoodOptions = async () => {
   ).then(res => res.addTags([tags.tagHawker, tags.tagCheap]));
   await Place.create(
     {
-      category: "Food",
+      category: "food",
       name: "subway",
       type: "restaurant",
       address: "42/43 Pekin Street, FarEast Square",
@@ -58,7 +58,7 @@ const createFoodOptions = async () => {
 
   await Place.create(
     {
-      category: "Food",
+      category: "food",
       name: "Sushi Tei",
       type: "restaurant",
       address: "20 Cross Street",
