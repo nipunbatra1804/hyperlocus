@@ -1,6 +1,9 @@
 const request = require("supertest");
 const { User } = require("../../models");
 const app = require("../../app");
+jest.mock("jsonwebtoken");
+const jwt = require("jsonwebtoken");
+
 
 describe("/register works", () => {
   beforeAll(async () => {
@@ -53,8 +56,7 @@ describe("/register works", () => {
     await request(app)
       .post("/auth/login")
       .send(userToLogin)
-      .expect(200)
-      .expect(/logged in/);
+      .expect(200);
 
     done();
   });

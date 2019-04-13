@@ -21,20 +21,19 @@ describe("Towns", () => {
       { name: "BUONA VISTA", type: "1-RM", medRent: 2700 }
     ];
     const verifyTowns = (towns, expected) => {
-      console.log(towns);
       towns.forEach((elem, index) => {
         expect(elem.town).toBe(expected[index].town);
         expect(elem.town).toBe(expected[index].town);
       });
     };
-    test("returns all towns", async done => {
-      await request(app)
+    test("returns all towns", async () => {
+      const res = await request(app)
         .get("/towns")
         .expect(res => verifyTowns(res.body, expectedTowns))
         .expect(200);
 
-      done();
-      //.expect(res => verifyTowns(res.body, expectedTowns), done);
+      const amk = res.body.find(elem => elem.name.includes("ANG MOH KIO"));
+      expect(amk.location.coordinates).toEqual(expect.any(Array));
     });
   });
 });

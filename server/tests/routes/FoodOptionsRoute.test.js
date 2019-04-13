@@ -3,13 +3,22 @@ require("dotenv").config();
 const request = require("supertest");
 const app = require("../../app");
 
-const { Place, Tag } = require("../../models");
+const { Place, Tag, User } = require("../../models");
 const createFoodOptions = require("../seed/seedFoodOptions");
+jest.mock("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 describe("/FoodOptions", () => {
+  const dummyUserAcceptable = {
+    username: "nipunbatra",
+    userEmail: "npb@example.com",
+    password: "pass",
+    category: "user"
+  };
   beforeAll(async () => {
     await sequelize.sync({ force: true });
     await createFoodOptions();
+    await User.create(dummyUserAcceptable);
   });
 
   afterAll(async () => {
@@ -79,13 +88,13 @@ describe("/FoodOptions", () => {
       let foodOptions = res.body;
       foodOptions = foodOptions.map(food => food.name);
 
-      console.log(foodOptions);
 
       done();
     });
   });
   describe("[Post] options", () => {
     const crs = { type: "name", properties: { name: "EPSG:4326" } };
+
     const dummyItem = {
       category: "Food",
       name: "OrangeYLemon",
@@ -95,8 +104,10 @@ describe("/FoodOptions", () => {
     };
 
     test("should add a rest with NO tags", async () => {
+      jwt.verify.mockResolvedValue({ username: "nipunbatra" });
       const res = await request(app)
         .post("/places")
+        .set("Cookie", ["token", ""])
         .send({ place: dummyItem })
         .expect(201);
 
@@ -106,6 +117,7 @@ describe("/FoodOptions", () => {
     });
 
     test("should add a rest with tags", async done => {
+      jwt.verify.mockResolvedValue({ username: "nipunbatra" });
       dummyItem.tags = ["japanese", "healthier"];
       const res = await request(app)
         .post("/places")
@@ -122,7 +134,7 @@ describe("/FoodOptions", () => {
   describe("[Patch] foodOptions ", () => {
     test("should be able to edit a field in a particular Food Option", async () => {
       const { id } = await Place.findOne({ where: { name: "subway" } });
-
+      jwt.verify.mockResolvedValue({ username: "nipunbatra" });
       await request(app)
         .patch(`/places/${id}`)
         .send({ openingTime: "06:00" })
@@ -136,7 +148,7 @@ describe("/FoodOptions", () => {
     });
     test("should be able to add new Tags to an existing Food Option", async () => {
       const { id } = await Place.findOne({ where: { name: "subway" } });
-
+      jwt.verify.mockResolvedValue({ username: "nipunbatra" });
       await request(app)
         .patch(`/places/${id}`)
         .send({ tags: ["westenr"] })

@@ -17,10 +17,8 @@ describe("Many To Many Association", () => {
       const restaurant1 = await Place.findOne({
         where: { name: "Clarke Hospital" }
       });
-      printMagicMethods(restaurant1);
       let tags = await restaurant1.getTags();
       tags = tags.map(tag => tag.name);
-      console.log(tags);
       expect(tags).toEqual(expect.arrayContaining(["pharmacy", "cheap"]));
     });
 
@@ -45,7 +43,6 @@ describe("Many To Many Association", () => {
       const tag1 = await Tag.findOne({
         where: { name: "emergency" }
       });
-      printMagicMethods(tag1);
       let healthOptions = await tag1.getPlaces();
       healthOptions = healthOptions.map(opt => opt.name);
       expect(healthOptions).toEqual(

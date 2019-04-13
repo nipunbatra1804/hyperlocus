@@ -17,10 +17,9 @@ describe("Many To Many Association", () => {
       const restaurant1 = await Place.findOne({
         where: { name: "Sushi Tei" }
       });
-      printMagicMethods(restaurant1);
       let tags = await restaurant1.getTags();
       tags = tags.map(tag => tag.name);
-      console.log(tags);
+
       expect(tags).toEqual(expect.arrayContaining(["japanese", "healthier"]));
     });
 
@@ -28,10 +27,9 @@ describe("Many To Many Association", () => {
       const restaurant1 = await Place.findOne({
         where: { name: "rice garden" }
       });
-      printMagicMethods(restaurant1);
       let tags = await restaurant1.getTags();
       tags = tags.map(tag => tag.name);
-      console.log(tags);
+
       expect(tags).toEqual(expect.arrayContaining(["hawker", "cheap"]));
     });
     test("should add a foodoptions tags", async () => {
@@ -55,7 +53,6 @@ describe("Many To Many Association", () => {
       const tag1 = await Tag.findOne({
         where: { name: "healthier" }
       });
-      printMagicMethods(tag1);
       let foodOptions = await tag1.getPlaces();
       foodOptions = foodOptions.map(opt => opt.name);
       expect(foodOptions).toEqual(
