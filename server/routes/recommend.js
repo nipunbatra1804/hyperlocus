@@ -26,7 +26,7 @@ router
     }
 
     // Return best 3 candidate estates.
-    return res.json({[]})
+    return res.json({"recommendations": []});
   });
 
 module.exports = router;
