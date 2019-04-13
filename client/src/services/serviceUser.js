@@ -3,7 +3,7 @@ const inDev = process.env.NODE_ENV !== "production";
 
 const hyperlocusApi = axios.create({
   baseURL: inDev
-    ? "http://localhost:8080"
+    ? "http://localhost:4000"
     : "http://hyperlocus-server.herokuapp.com",
   withCredentials: true
 });
