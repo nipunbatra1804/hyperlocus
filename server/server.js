@@ -10,10 +10,10 @@ if (process.env.NODE_ENV !== "production") {
 }
 const port = process.env.PORT;
 
-sequelize.sync({ force: true }).then(async () => {
-  await createFoodOptions();
-  await createShopOptions();
-  await seedNeighbourhoods();
+sequelize.sync().then(async () => {
+  // await createFoodOptions();
+  // await createShopOptions();
+  // await seedNeighbourhoods();
   app.listen(port, () => {
     if (process.env.NODE_ENV === "production") {
       console.log(`Server is running on Heroku with port number ${port}`);
