@@ -35,7 +35,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:adityaswami93/hyperlocus',
       path: '/home/ubuntu/hyperlocus',
-      'post-deploy': 'npm install --prefix ./server && npm install --prefix ./client && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'git pull && npm install --prefix ./server && npm install --prefix ./client && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }
