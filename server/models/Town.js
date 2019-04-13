@@ -11,5 +11,9 @@ module.exports = (sequelize, type) => {
     { timestamps: false }
   );
 
+  Estate.associate = models => {
+    Estate.hasOne(EstateAttributes);
+  };
+
   return Estate;
 };
