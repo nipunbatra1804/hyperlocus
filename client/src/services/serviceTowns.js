@@ -1,18 +1,11 @@
-import axios from "axios";
-const inDev = process.env.NODE_ENV !== "production";
+import hyperlocusApi from "./hyperlocusApi";
 
-const hyperlocusApi = axios.create({
-  baseURL: inDev
-    ? "http://localhost:4000"
-    : "http://hyperlocus-server.herokuapp.com"
-});
-
-export async function getTowns() {
+export async function getTowns(location) {
   try {
-    console.log(inDev);
-    const foodOutlets = await hyperlocusApi.get("/towns");
-    console.log(foodOutlets);
-    return foodOutlets.data;
+    if (!location) {
+      const towns = await hyperlocusApi.get("/towns");
+      return towns.data;
+    }
   } catch (err) {
     console.log(err);
   }
