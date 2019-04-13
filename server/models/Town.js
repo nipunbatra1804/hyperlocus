@@ -8,11 +8,11 @@ module.exports = (sequelize, type) => {
       medRent: type.INTEGER,
       location: type.GEOMETRY("POLYGON")
     },
-    { timestamps: false 
+    { timestamps: false } 
   );
 
   Estate.associate = models => {
-    Estate.hasOne(EstateAttributes);
+    Estate.hasOne(models.EstateAttributes);
   };
 
   return Estate;

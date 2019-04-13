@@ -18,9 +18,7 @@ module.exports = (sequelize, type) => {
   );
 
   EstateAttributes.associate = models => {
-    EstateAttributes.belongsTo(Estate, {
-      as: 'attributes'
-    });
+    EstateAttributes.belongsTo(models.Estate);
   };
 
   return EstateAttributes;
