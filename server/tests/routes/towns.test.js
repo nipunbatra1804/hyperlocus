@@ -4,6 +4,7 @@ const request = require("supertest");
 const app = require("../../app");
 const { sequelize } = require("../../models");
 const createTowns = require("../seed/seedTowns");
+const createNeighbourhoods = require("../seed/seedNeighbourhoods");
 
 describe("Towns", () => {
   beforeAll(async () => {
@@ -34,6 +35,20 @@ describe("Towns", () => {
 
       const amk = res.body.find(elem => elem.name.includes("ANG MOH KIO"));
       expect(amk.location.coordinates).toEqual(expect.any(Array));
+    });
+  });
+  describe("[Get] neighbourhood by location", () => {
+    beforeAll(async () => {
+      await createNeighbourhoods();
+    });
+    test("returns all towns", async () => {
+      const res = await request(app)
+        .get("/towns")
+        .send({
+          location: { coordinates: [103.955419467871, 1.3214476908532] }
+        })
+        .expect(200);
+      console.log(res.body);
     });
   });
 });

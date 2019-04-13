@@ -3,7 +3,7 @@ module.exports = (sequelize, type) => {
     "place",
     {
       id: { type: type.INTEGER, primaryKey: true, autoIncrement: true },
-      category: { type: type.ENUM, values: ["healthcare", "Food", "retail"] },
+      category: { type: type.ENUM, values: ["health", "food", "retail"] },
       name: type.STRING,
       type: type.STRING,
       postalCode: type.INTEGER,

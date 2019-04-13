@@ -42,16 +42,16 @@ export default class ExplorePage extends Component {
       if (this.state.sites.length > 0) {
         return;
       }
-
-      const foodOutlets = await getOutlets();
-      const neighbourhoods = await getTowns();
-      console.log(neighbourhoods);
-      this.setState({ sites: [...foodOutlets], towns: [...neighbourhoods] });
       if (!(this.props.match.params.long && this.props.match.params.lat)) {
         this.geolocation();
       } else {
         this.updateViewsAndStates();
       }
+      const { currentPosition } = this.state;
+      const foodOutlets = await getOutlets();
+      const neighbourhoods = await getTowns();
+      console.log(neighbourhoods);
+      this.setState({ sites: [...foodOutlets], towns: [...neighbourhoods] });
     } catch (error) {
       console.log(error);
     }

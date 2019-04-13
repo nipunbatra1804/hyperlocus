@@ -1,12 +1,4 @@
-import axios from "axios";
-const inDev = process.env.NODE_ENV !== "production";
-
-const hyperlocusApi = axios.create({
-  baseURL: inDev
-    ? "http://localhost:8080"
-    : "http://hyperlocus-server.herokuapp.com/",
-  withCredentials: true
-});
+import hyperlocusApi from "./hyperlocusApi";
 
 export async function getOutlets() {
   try {
@@ -14,7 +6,6 @@ export async function getOutlets() {
     console.log(foodOutlets.data);
     let data = foodOutlets.data.filter(elem => !!elem.location);
     data = data.map(elem => {
-      elem.type = "foodOutlet";
       elem.properties = {};
       elem.properties.name = elem.name;
       elem.properties.address = elem.address;
