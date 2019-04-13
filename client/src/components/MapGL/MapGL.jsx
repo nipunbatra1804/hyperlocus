@@ -35,7 +35,7 @@ export default class MapGL extends Component {
         <LocationPin
           size={10}
           onClick={() => this.setState({ popupInfo: item })}
-          type={item.type}
+          type={item.category}
         />
       </Marker>
     );
@@ -85,7 +85,7 @@ export default class MapGL extends Component {
   };
   _getLayer = town => {
     return new GeoJsonLayer({
-      id: "geojson-layer",
+      id: `geojson-layer-${town.name}`,
       data: {
         type: "Feature",
         geometry: {

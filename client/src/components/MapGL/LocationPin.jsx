@@ -7,13 +7,13 @@ const pinStyle = {
 };
 const getClassName = type => {
   switch (type) {
-    case "supermarket":
+    case "retail":
       return "fas fa-cart-arrow-down";
-    case "clinic":
+    case "health":
       return "fas fa-clinic-medical";
     case "hawkerCentre":
       return "fas fa-utensils";
-    case "foodOutlet":
+    case "food":
       return "fas fa-utensils";
     default:
       return "far fa-compass";
