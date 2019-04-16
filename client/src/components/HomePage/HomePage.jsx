@@ -9,7 +9,7 @@ function HomePage(props) {
     { name: "Eat", value: "hawkerCentre" },
     { name: "Shop", value: "supermarket" }
   ];
-  const [location, setLocation] = useState("18 Cross Street");
+  const [location, setLocation] = useState("18 Telok Ayer");
 
   const handleLocationInput = event => {
     setLocation(event.target.value);
