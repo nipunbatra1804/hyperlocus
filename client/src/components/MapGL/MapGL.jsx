@@ -104,8 +104,8 @@ export default class MapGL extends Component {
       getLineColor: f => [255, 0, 0],
       getFillColor: f => [255, 0, 0, 0],
       pickable: true,
-      onHover: info => console.log("Hovered:", info),
-      onClick: info => console.log("Clicked:", info)
+      onHover: info => {},
+      onClick: info => {}
     });
   };
   _renderNeighborhood = (towns, viewport) => {
