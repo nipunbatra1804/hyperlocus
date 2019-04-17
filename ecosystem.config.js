@@ -6,6 +6,8 @@ module.exports = {
       script: "npm",
       args: "run build",
       watch: false,
+      max_restarts: 0,
+      autorestart : false,
       env: {
         NODE_ENV: "development"
       },
@@ -38,7 +40,7 @@ module.exports = {
       repo: "git@github.com:adityaswami93/hyperlocus",
       path: "/home/ubuntu/hyperlocus",
       "post-deploy":
-        "git pull && npm install --prefix ./server && npm install --prefix ./client && pm2 startOrRestart ecosystem.config.js"
+        "git pull && npm install --prefix ./server && npm install --prefix ./client && pm2 start ecosystem.config.js"
     }
   }
 };
