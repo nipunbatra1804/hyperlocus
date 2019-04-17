@@ -4,7 +4,15 @@ const towns = require("./towns");
 const places = require("./places");
 const auth = require("./auth");
 const recommend = require("./recommend");
+const cors = require("../middleware/cors");
+const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
+router.use(cookieParser());
+router.use(cors);
+router.use(morgan("tiny"));
+router.use(express.static("public"));
+router.use(express.json());
 router.route("/").get((req, res) => {
   res.status(200);
   res.send("Hi");
