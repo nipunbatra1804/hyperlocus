@@ -4,7 +4,7 @@ module.exports = {
       name: "hyperlocus-client",
       cwd: "./client",
       script: "npm",
-      args: "run build",
+      args: "run start",
       watch: false,
       max_restarts: 0,
       autorestart : false,
