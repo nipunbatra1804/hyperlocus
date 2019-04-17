@@ -40,7 +40,7 @@ module.exports = {
       repo: "git@github.com:adityaswami93/hyperlocus",
       path: "/home/ubuntu/hyperlocus",
       "post-deploy":
-        "git pull && npm install --prefix ./server && npm install --prefix ./client && pm2 start ecosystem.config.js"
+        "git pull && npm install --prefix ./server && npm install --prefix ./client && npm install --save @babel/runtime && pm2 start ecosystem.config.js"
     }
   }
 };
