@@ -1,18 +1,18 @@
 module.exports = {
   apps: [
-    // {
-    //   name: "hyperlocus-client",
-    //   cwd: "./client",
-    //   script: "npm",
-    //   args: "run build",
-    //   watch: false,
-    //   env: {
-    //     NODE_ENV: "development"
-    //   },
-    //   env_production: {
-    //     NODE_ENV: "production"
-    //   }
-    // },
+    {
+      name: "hyperlocus-client",
+      cwd: "./client",
+      script: "npm",
+      args: "run build",
+      watch: false,
+      env: {
+        NODE_ENV: "development"
+      },
+      env_production: {
+        NODE_ENV: "production"
+      }
+    },
     {
       name: "hyperlocus-server",
       cwd: "./server",
@@ -38,7 +38,7 @@ module.exports = {
       repo: "git@github.com:adityaswami93/hyperlocus",
       path: "/home/ubuntu/hyperlocus",
       "post-deploy":
-        "git pull && npm install --prefix ./server && pm2 startOrRestart ecosystem.config.js"
+        "git pull && npm install --prefix ./server && npm install --prefix ./client && pm2 startOrRestart ecosystem.config.js"
     }
   }
 };
