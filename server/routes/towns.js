@@ -56,4 +56,16 @@ router
     return res.json(towns);
   });
 
+router.route("/:id").get(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const towns = await Estate.findAll({
+      where: { id: id }
+    });
+    return res.status(200).json(towns);
+  } catch (err) {
+    return res.status(415).json("get request not in correct format");
+  }
+});
+
 module.exports = router;
