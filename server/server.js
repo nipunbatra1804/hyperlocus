@@ -4,6 +4,7 @@ const createFoodOptions = require("./tests/seed/seedFoodOptions");
 const createShopOptions = require("./tests/seed/seedShopOptions");
 const createHealthOptions = require("./tests/seed/seedHealthOptions");
 const seedNeighbourhoods = require("./tests/seed/seedNeighbourhoods");
+const seedEstates = require("../server/seeders/seedEstates");
 const app = require("./app");
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

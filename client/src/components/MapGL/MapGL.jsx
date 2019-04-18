@@ -3,6 +3,8 @@ import ReactMapGL, { NavigationControl, Marker, Popup } from "react-map-gl";
 import LocationPin from "./LocationPin";
 import PinInfo from "./PinInfo";
 import DeckGL, { GeoJsonLayer } from "deck.gl";
+import EstateInfo from "./EstateInfo";
+
 const navStyle = {
   position: "absolute",
   top: 0,
@@ -19,7 +21,8 @@ export default class MapGL extends Component {
         longitude: 103.8198,
         zoom: 10
       },
-      popupInfo: null
+      popupInfo: null,
+      popupTown: null
     };
   }
   _updateViewport = viewport => {
@@ -83,6 +86,33 @@ export default class MapGL extends Component {
       )
     );
   };
+
+  _onClickTown = (info, town) => {
+    this.setState({ popupTown: { info, town } });
+  };
+
+  _renderTownPopup = () => {
+    const { popupTown } = this.state;
+    if (!popupTown) {
+      return;
+    }
+    const { town, info } = popupTown;
+    return (
+      popupTown && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={info.coordinate[0]}
+          latitude={info.coordinate[1]}
+          closeOnClick={true}
+          onClose={() => this.setState({ popupTown: null })}
+        >
+          <EstateInfo name={town.name} address={"Singapore"} />
+        </Popup>
+      )
+    );
+  };
+
   _getLayer = town => {
     return new GeoJsonLayer({
       id: `geojson-layer-${town.name}`,
@@ -104,8 +134,9 @@ export default class MapGL extends Component {
       getLineColor: f => [255, 0, 0],
       getFillColor: f => [255, 0, 0, 0],
       pickable: true,
-      onHover: info => {},
-      onClick: info => {}
+      onClick: info => {
+        this._onClickTown(info, town);
+      }
     });
   };
   _renderNeighborhood = (towns, viewport) => {
@@ -147,7 +178,8 @@ export default class MapGL extends Component {
         {this._renderPosition(longitude, latitude)}
         {dropPing && sites.map(this._renderMarker)}
         {this._renderPopup()}
-        {popUp && this._displayPopup(popUp)}
+        {this._renderTownPopup()}
+        {/* {popUp && this._displayPopup(popUp)} */}
         <div className="nav" style={navStyle}>
           <NavigationControl onViewportChange={this._updateViewport} />
         </div>
