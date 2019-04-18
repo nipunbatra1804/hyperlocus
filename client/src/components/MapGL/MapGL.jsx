@@ -89,7 +89,7 @@ export default class MapGL extends Component {
       data: {
         type: "Feature",
         geometry: {
-          type: "Polygon",
+          type: town.location.type,
           coordinates: town.location.coordinates
         }
       },

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon server.js",
+    "seed:db": "NODE_ENV=development nodemon ./seeders/createTables.js",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
     "test": "echo \"Error: no test specified\" && exit 1"
