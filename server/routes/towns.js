@@ -1,5 +1,5 @@
 const express = require("express");
-const { Estate, EstateAttributes } = require("../models");
+const { Estate, EstateAttributes, HomeType } = require("../models");
 
 const router = express.Router();
 
@@ -61,7 +61,7 @@ router.route("/:id").get(async (req, res) => {
   try {
     const towns = await Estate.findAll({
       where: { id: id },
-      include: [EstateAttributes]
+      include: [EstateAttributes, HomeType]
     });
     return res.status(200).json(towns);
   } catch (err) {
