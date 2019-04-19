@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
       id: { type: type.INTEGER, primaryKey: true, autoIncrement: true },
       town: type.STRING,
       type: type.STRING,
-      Rent: type.STRING
+      rent: type.STRING
     },
     { timestamps: false }
   );

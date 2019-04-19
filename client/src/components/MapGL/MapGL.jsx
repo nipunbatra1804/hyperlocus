@@ -107,7 +107,7 @@ export default class MapGL extends Component {
           closeOnClick={true}
           onClose={() => this.setState({ popupTown: null })}
         >
-          <EstateInfo name={town.name} address={"Singapore"} />
+          <EstateInfo name={town.name} address={"Singapore"} id={town.id} />
         </Popup>
       )
     );
