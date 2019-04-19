@@ -2,6 +2,7 @@ module.exports = (sequelize, type) => {
   const HomeType = sequelize.define(
     "hometype",
     {
+      id: { type: type.INTEGER, primaryKey: true, autoIncrement: true },
       town: type.STRING,
       type: type.STRING,
       Rent: type.STRING
