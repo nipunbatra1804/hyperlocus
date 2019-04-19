@@ -18,11 +18,14 @@ export default function NavBar(props) {
         <NavLink className="nav-item nav-link" to="/explore">
           Explore
         </NavLink>
-        <NavLink className="nav-item nav-link" to="/admin">
-          Admin
+        <NavLink className="nav-item nav-link" to="/recommend">
+          Recommend
         </NavLink>
       </div>
       <div className="navbar-nav  ml-auto">
+        <NavLink className="nav-item nav-link" to="/admin">
+          Admin
+        </NavLink>
         <NavLink className="nav-item nav-link" to="/create">
           Create
         </NavLink>

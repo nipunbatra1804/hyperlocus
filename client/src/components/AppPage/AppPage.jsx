@@ -7,6 +7,7 @@ import AdminPage from "../AdminPage/AdminPage";
 import CreatePage from "../CreatePage/CreatePage";
 import LoginPage from "../LoginPage/LoginPage";
 import EstatePage from "../EstatePage/EstatePage";
+import RecPage from "../RecPage/RecPage";
 
 export default function AppPage() {
   const [user, setUser] = useState("");
@@ -23,6 +24,7 @@ export default function AppPage() {
           />
           <Route path="/explore" component={ExplorePage} />
           <Route path="/admin" component={AdminPage} />
+          <Route path="/recommend" component={RecPage} />
           <Route
             path="/create/:id"
             render={props => <CreatePage {...props} />}
