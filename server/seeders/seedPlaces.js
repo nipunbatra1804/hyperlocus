@@ -90,4 +90,94 @@ const seedFoodOptions = async () => {
   }
 };
 
-module.exports = { seedClinics, seedSuperMarkets, seedFoodOptions };
+const seedChildCare = async () => {
+  try {
+    const geoChildcare = require("./childcare-centers.json");
+    const npc = geoChildcare.features;
+    await Promise.all(
+      npc.map(async elem => {
+        await Place.create({
+          category: "childcare",
+          name: elem.properties["Name"],
+          type: "",
+          address: `${elem.properties["ADDRESSSTREETNAME"]}`.replace(
+            "null",
+            ""
+          ),
+          postalCode: elem.properties["ADDRESSPOSTALCODE"],
+          openingTime: "07:30",
+          closingTime: "18:30",
+          location: {
+            type: elem.geometry.type,
+            coordinates: elem.geometry.coordinates,
+            crs: crs
+          }
+        });
+      })
+    );
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+const seedPreSchools = async () => {
+  try {
+    const geoChildcare = require("./pre-schools.json");
+    const npc = geoChildcare.features;
+    await Promise.all(
+      npc.map(async elem => {
+        await Place.create({
+          category: "childcare",
+          name: elem.properties["CENTRE_NAME"],
+          type: "",
+          address: `${elem.properties["ADDRESS"]}`.replace("null", ""),
+          postalCode: elem.properties["POSTAL_CODE"],
+          openingTime: "07:30",
+          closingTime: "18:30",
+          location: {
+            type: elem.geometry.type,
+            coordinates: elem.geometry.coordinates,
+            crs: crs
+          }
+        });
+      })
+    );
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+const seedGreenery = async () => {
+  try {
+    const geoGreen = require("./SKYRISEGREENERY.json");
+    const npc = geoGreen.features;
+    await Promise.all(
+      npc.map(async elem => {
+        await Place.create({
+          category: "nature",
+          name: elem.properties["description"],
+          type: "",
+          address: "",
+          postalCode: elem.properties["ADDRESSPOSTALCODE"],
+          openingTime: "07:30",
+          closingTime: "18:30",
+          location: {
+            type: elem.geometry.type,
+            coordinates: elem.geometry.coordinates,
+            crs: crs
+          }
+        });
+      })
+    );
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+module.exports = {
+  seedClinics,
+  seedSuperMarkets,
+  seedFoodOptions,
+  seedChildCare,
+  seedPreSchools,
+  seedGreenery
+};
