@@ -2,9 +2,16 @@ const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.js")[env];
 
-
-sequelize = new Sequelize(config);
-
+try {
+  sequelize = new Sequelize(config);
+} catch {
+  sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config.options
+  );
+}
 const models = {
   Estate: sequelize.import("./Town.js"),
   EstateAttributes: sequelize.import("./Attributes.js"),

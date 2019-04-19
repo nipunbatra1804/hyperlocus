@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@material-ui/core": "^3.9.3",
+    "@turf/bbox": "^6.0.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "deck.gl": "^6.4.9",
@@ -20,7 +21,8 @@
     "react-scripts": "^2.1.8",
     "react-simple-timefield": "^2.0.1",
     "reactstrap": "^7.1.0",
-    "tabletojson": "^1.0.4"
+    "tabletojson": "^1.0.4",
+    "viewport-mercator-project": "^6.1.1"
   },
   "scripts": {
     "start": "NODE_ENV=production react-scripts start",

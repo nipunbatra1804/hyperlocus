@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 //const Sequelize = require("");
-const { Place, Tag, sequelize } = require("../models");
+const { Place, Tag, sequelize, Estate } = require("../models");
 const SqOp = sequelize.Op;
 const insertLocation = require("../helpers/updateLocation");
 const verification = require("../middleware/verification");
@@ -15,17 +15,19 @@ router
         include: [Tag]
       });
     } else {
-      const { name, tag, loc, distance } = query;
+      const { name, tag, loc, distance, id } = query;
       if (name) {
         places = await Place.findAll({
           where: { name: name },
           include: [Tag]
         });
+        return res.json(places);
       }
       if (tag) {
         places = await Place.findAll({
           include: [{ model: Tag, where: { name: tag } }]
         });
+        return res.json(places);
       }
       if (loc) {
         places = await Place.findAll({
@@ -43,6 +45,7 @@ router
             distance
           )
         });
+        return res.json(places);
       }
     }
     res.json(places);

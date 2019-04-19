@@ -6,6 +6,7 @@ import ExplorePage from "../ExplorePage/ExplorePage";
 import AdminPage from "../AdminPage/AdminPage";
 import CreatePage from "../CreatePage/CreatePage";
 import LoginPage from "../LoginPage/LoginPage";
+import EstatePage from "../EstatePage/EstatePage";
 
 export default function AppPage() {
   const [user, setUser] = useState("");
@@ -30,6 +31,10 @@ export default function AppPage() {
           <Route
             path="/login"
             render={props => <LoginPage {...props} updateUsername={setUser} />}
+          />
+          <Route
+            path="/estate/:town"
+            render={props => <EstatePage {...props} />}
           />
           <Redirect from="/" to="/home" />
         </Switch>

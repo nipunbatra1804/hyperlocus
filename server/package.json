@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:dev": "NODE_ENV=development nodemon server.js",
+    "seed:db": "NODE_ENV=development nodemon ./seeders/createTables.js",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,7 +29,6 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.16.3",
     "morgan": "^1.9.1",
     "mysql": "^2.16.0",
     "pg": "^7.9.0",

@@ -6,9 +6,14 @@ module.exports = (sequelize, type) => {
       name: type.STRING,
       type: type.STRING,
       medRent: type.INTEGER,
-      location: type.GEOMETRY("POLYGON")
+      location: type.GEOMETRY()
     },
-    { timestamps: false, indexes: [{fields: ['location']}] } 
+    { 
+      timestamps: false,
+      indexes: [
+        {fields: ['location'], using: 'gist'}
+      ],
+    } 
   );
 
   Estate.associate = models => {
