@@ -8,6 +8,7 @@ const createNeighbourhoods = async () => {
     await Promise.all(
       npc.map(async elem => {
         await Estate.create({
+          id: parseInt(elem.properties["Name"].replace("kml_", "")),
           name: elem.properties["NPC_NAME"]
             .replace(/Police\s+Centre/i, "")
             .trimRight(),

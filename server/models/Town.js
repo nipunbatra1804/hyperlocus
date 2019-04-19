@@ -2,7 +2,7 @@ module.exports = (sequelize, type) => {
   const Estate = sequelize.define(
     "estate",
     {
-      id: { type: type.INTEGER, primaryKey: true, autoIncrement: true },
+      id: { type: type.INTEGER, primaryKey: true},
       name: type.STRING,
       type: type.STRING,
       medRent: type.INTEGER,

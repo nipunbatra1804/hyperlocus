@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
       opennessIndex: type.DOUBLE,
       extroversionIndex: type.DOUBLE,
       conscientiousnessIndex: type.DOUBLE,
-      agreeablessIndex: type.DOUBLE,
+      agreeablenessIndex: type.DOUBLE,
       neuroticismIndex: type.DOUBLE,
       healthIndex: type.DOUBLE,
       entertainmentIndex: type.DOUBLE,

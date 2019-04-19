@@ -1,0 +1,36 @@
+Estate,id,openness,extroversion,conscientiousness,agreeableness,neuroticism,Number of Health Eatries,health,entertainment,food,childindex,oldAge,greenery,image
+Ang Mo Kio North,15,0.5,0.5,0.5,0.5,0.5,,0.5,0.3,0.3,0.4,0.2,0.9,https://upload.wikimedia.org/wikipedia/en/1/16/Ang_mo_kio.JPG
+Ang Mo Kio South,4,0.5,0.5,0.5,0.5,0.5,,0.5,0.6,0.3,0,0.3,0.3,https://www.straitstimes.com/sites/default/files/styles/article_pictrure_780x520_/public/articles/2016/04/28/amk1.jpg?itok=sSeYvx_4&timestamp=1461797170
+Bedok North,22,0.5,0.5,0.5,0.5,0.5,,0.5,0.4,0.4,0.5,0.1,0.1,https://sg1-cdn.pgimgs.com/projectnet-project/7730/ZPPHO.96897200.R800X800.jpg
+Bedok South,21,0.5,0.5,0.5,0.5,0.5,,0.5,0.3,0.4,0.4,0.5,0.3,http://3.bp.blogspot.com/-93kvls7cwg0/Uy8D_B3UEqI/AAAAAAAAiPc/_fZtqn59hd8/s1600/05+No+Name+Cheng+Tng+-+Second+Best+in+Singapore+%2540+Bedok+South+Avenue+3+%255BSpringleaf+Eating+House%255D+%2528Large%2529.JPG
+Bishan,25,0.5,0.7,0.5,0.5,0.5,,0.5,0.8,0.8,0.6,0.2,0.2,https://upload.wikimedia.org/wikipedia/commons/c/cd/BishanTown-SG.JPG
+Bukit Batok,31,0.5,0.5,0.5,0.5,0.5,,0.5,0.3,0.6,0.4,0.3,0.8,https://upload.wikimedia.org/wikipedia/commons/2/2a/BukitBatok.JPG
+Bukit Merah East,34,0.5,0.5,0.5,0.5,0.5,,0.5,0.5,0.4,0.8,0.4,0.4,https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Pano_of_Chinatown_sector_%288437614027%29.jpg/2880px-Pano_of_Chinatown_sector_%288437614027%29.jpg
+Bukit Merah West,3,0.5,0.5,0.5,0.5,0.5,,0.5,0.4,0.4,0,0.8,0.6,https://sethlui.com/wp-content/uploads/2018/07/Bukit-Merah-View-Hawker-Centre-1.jpg
+Bukit Panjang,30,0.5,0.5,0.5,0.5,0.5,,0.5,0.2,0.3,0.1,0.2,0.4,https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Bukit_Panjang_Estate_%288026633031%29.jpg/1200px-Bukit_Panjang_Estate_%288026633031%29.jpg
+Bukit Timah,5,0.5,0.8,0.9,0.5,0.5,,0.5,0.4,0.8,0.2,0.5,0.7,http://roots.sg/~/media/Roots/Images/landmarks/bukit-timah-heritage-trail/2018/bukit-timah-railway-2.jpg
+Changi,14,0.5,0.6,0.7,0.5,0.5,,0.5,0.8,1,0.6,1,0.6,https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Changi_Village_10%2C_Jul_06.JPG/1200px-Changi_Village_10%2C_Jul_06.JPG
+Choa Chu Kang,19,0.5,0.3,0.5,0.5,0.5,,0.5,0.5,0.9,0.9,0.7,0.9,https://goodyfeed.com/wp-content/uploads/2016/04/Choa_Chu_Kang_Town_Centre_Singapore_-_20081125.jpg
+Clementi,18,0.5,0.5,0.5,0.5,0.5,,0.5,0.7,0.8,0.2,0.9,0.9,https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Clementitown.JPG/1200px-Clementitown.JPG
+Geylang,23,0.8,0.8,0.2,0.7,0.5,,0.5,0.4,0.9,0.9,0.5,0.5,https://www.straitstimes.com/sites/default/files/styles/article_pictrure_780x520_/public/articles/2018/04/09/nm-geylang-0904.jpg?itok=Z8r5pJOj&timestamp=1523251961
+Hougang,33,0.5,0.5,0.5,0.1,0.5,,0.5,0.4,0.9,0.5,0,0.7,https://upload.wikimedia.org/wikipedia/commons/1/1e/Hougang_Central%2C_Oct_06.JPG
+Jurong East,10,0.5,0.5,0.5,0.5,0.5,,0.5,0.9,0.2,0.2,0.6,0.8,https://www.hdb.gov.sg/cs/infoweb/img/our-towns-jurong-east-1.jpg
+Jurong West,9,0.5,0.5,0.5,0.5,0.5,,0.5,0.8,0.3,0.4,0.3,0.6,https://www.hdb.gov.sg/cs/infoweb/img/our-towns-jurong-west-1.jpg
+Kampong Java,26,0.5,0.5,0.5,0.5,0.5,,0.5,0.1,0.7,0.4,0.9,0.2,http://thesmartlocal.com/media/reviews/photos/original/7c/ef/de/_newton2-1330196903.jpg
+Marina Bay,8,0.9,0.7,0.8,0.5,0.5,,0.5,0.9,0.9,0.1,0.8,1,https://www.visitsingapore.com/content/dam/desktop/global/see-do-singapore/places-to-see/marina-bay-area-carousel01-square.jpeg
+Marine Parade,2,0.5,0.5,0.5,0.5,0.5,,0.5,0.5,0.6,0.1,0.8,0.3,https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Marine_Parade_Community_Building%2C_Dec_05.JPG/220px-Marine_Parade_Community_Building%2C_Dec_05.JPG
+Nanyang,11,0.2,0.5,0.5,0.5,0.5,,0.5,0.1,0.4,0.4,0.5,0.4,https://www.ntu.edu.sg/ppf/PublishingImages/pix_ntu.png
+Orchard,28,0.8,0.8,0.5,0.5,0.5,,0.5,0.9,0.9,0,0.3,0.8,https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiTos761czhAhUbiHAKHZZzAwQQjRx6BAgBEAU&url=https%3A%2F%2Fthehoneycombers.com%2Fsingapore%2Fsurvival-guide-to-orchard-road-singapore%2F&psig=AOvVaw12iUjb5YxQDj1qdpOWMDaY&ust=1555231231463925
+Pasir Ris,17,0.5,0.5,0.5,0.5,0.5,,0.5,0.4,0.7,0.9,0.4,0.1,https://www.99.co/blog/singapore/wp-content/uploads/2018/08/punggol-vs-pasir-ris-e1535599686184.jpg
+Punggol,12,0.5,0.5,0.5,0.5,0.5,,0.5,0.2,0.5,0.4,0.4,0.8,https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Punggol_Town_Centre.jpg/280px-Punggol_Town_Centre.jpg
+Queenstown,7,0.6,0.4,0.2,0.5,0.5,,0.5,0.1,0.5,0.9,0.6,0.1,https://d22ir9aoo7cbf6.cloudfront.net/wp-content/uploads/sites/2/2015/03/Skyville%40Dawson-view.jpg
+Rochor,24,0.5,0.5,0.5,0.5,0.5,,0.5,0.4,0.5,0.4,0,0.2,https://www.straitstimes.com/sites/default/files/styles/article_pictrure_780x520_/public/articles/2017/10/23/ST_20171023_ROCHOR23_3506329.jpg?itok=sxqit4mX&timestamp=1508694005
+Sembawang,6,0.5,0.5,0.5,0.5,0.5,,0.5,0.3,0.6,0.5,0.4,0.6,https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sembawang_Estate.jpg/1200px-Sembawang_Estate.jpg
+Sengkang,20,0.5,0.5,0.5,0.5,0.5,,0.5,0.5,0.3,0.6,0.9,0.7,https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Sengkang_Sculpture_Park%2C_Nov_05.JPG/220px-Sengkang_Sculpture_Park%2C_Nov_05.JPG
+Serangoon,32,0.5,0.5,0.5,0.5,0.5,,0.5,0.3,0.7,0.4,0.2,1,https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Serangoon_North_HDB.JPG/1200px-Serangoon_North_HDB.JPG
+Tampines,35,0.2,0.2,0.5,0.5,0.5,,0.5,0.6,0.2,0.9,0.5,0.7,http://roots.sg/~/media/Roots/Images/landmarks/tampines-heritage-trail/tampines-central-park-4.jpg
+Toa Payoh,27,0.5,0.5,0.5,0.5,0.5,,0.5,0.7,0.7,1,0.3,0.3,http://www.hdb.gov.sg/cs/infoweb/img/our-towns-toa-payoh-1.jpg;wa6d00fce295c8421c
+Woodlands East,29,0.3,0.2,0.5,0.5,0.5,,0.5,0.1,0.7,0.8,0.4,0.7,http://www.dronestagr.am/wp-content/uploads/2015/07/DJI016151-1200x674.jpg
+Woodlands West,16,0.3,0.2,0.5,0.5,0.5,,0.5,0.1,0.1,0.9,0.2,0.9,https://sg1-cdn.pgimgs.com/listing/21128271/UPHO.97085764.V800/617-Woodlands-Avenue-4-Admiralty-Woodlands-Singapore.jpg
+Yishun North,1,0.2,0.2,0.5,0.5,0.1,,0.5,0.3,0.5,0.5,1,0.2,http://sg2-cdn.pgimgs.com/listing/20109539/UPHO.74034187.V550.jpg
+Yishun South,13,0.2,0.2,0.5,0.5,0.1,,0.5,0.2,0.2,0.8,0.3,1,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdj9PT0DE7jmfhZMPnHhwzBxHVdRTjLi7Du_h289xdtYgi9cPtBQ

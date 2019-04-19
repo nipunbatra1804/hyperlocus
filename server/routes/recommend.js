@@ -19,7 +19,7 @@ router
     } else {
       // Get towns nearest to the center of Singapore.
       nearestTowns = await getNearestEstates({
-        coordinates: [103.8509579, 1.2824648]
+        coordinates: [1.2837751, 103.8484317]
       });
     }
     // If query has a budget, filter out things beyond budget.
@@ -35,7 +35,7 @@ router
     }
 
     // Return best 3 candidate estates.
-    return res.json({"recommendations": nearestTowns.slice(0,3)});
+    return res.json({"recommendations": nearestTowns.slice(0,6)});
   });
 
 function getNearestEstates(loc) {
