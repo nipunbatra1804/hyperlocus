@@ -34,19 +34,13 @@ router
   });
 
 function getNearestEstates(loc) {
+  if (isNaN(loc.coordinates[0]) || isNaN(loc.coordinates[1])) {
+    return [];
+  }
+  const order_clause =  'location <#> ST_SetSRID(ST_MakePoint(' + 
+    loc.coordinates[1] + ', ' + loc.coordinates[0] + '), 4326)';
   return Estate.findAll({
-  order: sequelize.fn("<#>",
-    sequelize.fn(
-      "ST_SetSRID",
-      sequelize.fn(
-        "ST_MakePoint",
-        loc.coordinates[1],
-        loc.coordinates[0]
-      ), 
-      4326
-    ),
-    sequelize.col("location")
-  ),
+  order: [sequelize.literal(order_clause)],
   limit: 3
   })
 }
