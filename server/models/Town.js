@@ -2,7 +2,7 @@ module.exports = (sequelize, type) => {
   const Estate = sequelize.define(
     "estate",
     {
-      id: { type: type.INTEGER, primaryKey: true},
+      id: { type: type.INTEGER, primaryKey: true },
       name: type.STRING,
       type: type.STRING,
       medRent: type.INTEGER,
@@ -15,7 +15,8 @@ module.exports = (sequelize, type) => {
   );
 
   Estate.associate = models => {
-    Estate.hasOne(models.EstateAttributes);
+    Estate.hasOne(models.EstateAttributes, { through: "estate_attr" });
+    Estate.hasMany(models.HomeType);
   };
 
   return Estate;

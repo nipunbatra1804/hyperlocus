@@ -18,8 +18,8 @@ module.exports = (sequelize, type) => {
   );
 
   EstateAttributes.associate = models => {
-    EstateAttributes.belongsTo(models.Estate);
+    EstateAttributes.belongsTo(models.Estate, { through: "estate_attr" });
   };
 
   return EstateAttributes;
-}
+};
