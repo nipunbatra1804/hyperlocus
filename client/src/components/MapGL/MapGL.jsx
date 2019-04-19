@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ReactMapGL, { NavigationControl, Marker, Popup } from "react-map-gl";
-import LocationPin from "./LocationPin";
-import PinInfo from "./PinInfo";
+import LocationPin from "../mapHelpers/LocationPin";
+import PinInfo from "../mapHelpers/PinInfo";
 import DeckGL, { GeoJsonLayer } from "deck.gl";
-import EstateInfo from "./EstateInfo";
+import EstateInfo from "../mapHelpers/EstateInfo";
 
 const navStyle = {
   position: "absolute",

@@ -39,12 +39,12 @@ router.route("/:id").get(async (req, res) => {
   const places = await Place.findAll({
     where: sequelize.fn(
       "ST_Within",
+      sequelize.col("location"),
       sequelize.fn(
         "ST_SetSRID",
         sequelize.fn("ST_GeomFromGeoJSON", JSON.stringify(town.location)),
         4326
-      ),
-      sequelize.col("location")
+      )
     )
   });
   return res.json(places);
