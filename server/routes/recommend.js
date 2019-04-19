@@ -13,9 +13,14 @@ router
     }
     // If query has a place of interest do a postGIS query to get
     // nearest neighbors.
+    var nearestTowns;
     if (query.placesOfInterest && query.placesOfInterest.length > 0) {
-      const nearestTowns = await getNearestEstates(query.placesOfInterest[0]);
-      return res.json(nearestTowns);
+      nearestTowns = await getNearestEstates(query.placesOfInterest[0]);
+    } else {
+      // Get towns nearest to the center of Singapore.
+      nearestTowns = await getNearestEstates({
+        coordinates: [103.8509579, 1.2824648]
+      });
     }
     // If query has a budget, filter out things beyond budget.
     if (query.budget) {
@@ -30,7 +35,7 @@ router
     }
 
     // Return best 3 candidate estates.
-    return res.json({"recommendations": []});
+    return res.json({"recommendations": nearestTowns.slice(0,3)});
   });
 
 function getNearestEstates(loc) {
@@ -41,7 +46,7 @@ function getNearestEstates(loc) {
     loc.coordinates[1] + ', ' + loc.coordinates[0] + '), 4326)';
   return Estate.findAll({
   order: [sequelize.literal(order_clause)],
-  limit: 3
+  limit: 7
   })
 }
 
