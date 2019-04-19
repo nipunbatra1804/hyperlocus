@@ -17,9 +17,9 @@ function shuffle(a) {
 
 export async function getOutlets() {
   try {
-    const foodOutlets = await hyperlocusApi.get("/places");
-    console.log(foodOutlets.data);
-    let data = foodOutlets.data.filter(elem => !!elem.location);
+    const outlets = await hyperlocusApi.get("/places");
+    console.log(outlets.data);
+    let data = outlets.data.filter(elem => !!elem.location);
     data = shuffle(data).slice(1, 400);
     data = data.map(elem => {
       elem.properties = {};
@@ -86,3 +86,51 @@ export async function getOutlet(id) {
     console.log(err.message);
   }
 }
+
+export async function getOutletByTown(id) {
+  console.log(id);
+  try {
+    const outlets = await hyperlocusApi.get(`/estateinfo/${id}`);
+    let data = outlets.data.filter(elem => !!elem.location);
+    data = data.map(elem => {
+      elem.properties = {};
+      elem.properties.name = elem.name;
+      elem.properties.address = elem.address;
+      elem.properties.postCode = elem.postalCode;
+      elem.geometry = {};
+      elem.geometry.coordinates = [];
+      elem.geometry.coordinates[0] = elem.location.coordinates[0];
+      elem.geometry.coordinates[1] = elem.location.coordinates[1];
+      return elem;
+    });
+    return data;
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+/*
+
+try {
+    const outlets = await hyperlocusApi.get("/places");
+    console.log(outlets.data);
+    let data = outlets.data.filter(elem => !!elem.location);
+    data = shuffle(data).slice(1, 400);
+    data = data.map(elem => {
+      elem.properties = {};
+      elem.properties.name = elem.name;
+      elem.properties.address = elem.address;
+      elem.properties.postCode = elem.postalCode;
+      elem.geometry = {};
+      elem.geometry.coordinates = [];
+      elem.geometry.coordinates[0] = elem.location.coordinates[0];
+      elem.geometry.coordinates[1] = elem.location.coordinates[1];
+      return elem;
+    });
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+
+
+*/

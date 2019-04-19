@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import ReactMapGL, { StaticMap } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import DeckGL, { GeoJsonLayer } from "deck.gl";
 import WebMercatorViewport from "viewport-mercator-project";
 import bbox from "@turf/bbox";
 import { getTowns } from "../../services/serviceTowns";
+import { getOutletByTown } from "../../services/serviceOutlets";
+import LocationPin from "../mapHelpers/LocationPin";
+import { Container, Row, Col } from "reactstrap";
 const navStyle = {
   position: "absolute",
   top: 0,
@@ -21,7 +24,8 @@ export default class EstatePage extends Component {
         zoom: 10
       },
       popupInfo: null,
-      towns: null
+      towns: null,
+      places: null
     };
   }
 
@@ -46,9 +50,7 @@ export default class EstatePage extends Component {
       getLineColor: f => [255, 0, 0],
       getFillColor: f => [255, 0, 0, 0],
       pickable: true,
-      onClick: info => {
-        this._onClickTown(info, town);
-      }
+      onClick: () => {}
     });
   };
   _renderNeighborhood = (towns, viewport) => {
@@ -56,7 +58,21 @@ export default class EstatePage extends Component {
       <DeckGL {...viewport} layers={towns.map(town => this._getLayer(town))} />
     );
   };
-
+  _renderMarker = (item, index) => {
+    return (
+      <Marker
+        key={`marker-${index}`}
+        longitude={item.geometry.coordinates[0]}
+        latitude={item.geometry.coordinates[1]}
+      >
+        <LocationPin
+          size={10}
+          onClick={() => this.setState({ popupInfo: item })}
+          type={item.category}
+        />
+      </Marker>
+    );
+  };
   async componentDidMount() {
     const townId = this.props.match.params.town;
     const estate = await getTowns(townId);
@@ -69,6 +85,8 @@ export default class EstatePage extends Component {
         [[minLng, minLat], [maxLng, maxLat]],
         { padding: 40 }
       );
+      const places = await getOutletByTown(townId);
+      console.log(places);
       this.setState({
         viewport: {
           ...this.state.viewport,
@@ -76,23 +94,32 @@ export default class EstatePage extends Component {
           latitude,
           zoom
         },
-        towns: estate
+        towns: estate,
+        places: places
       });
     }
   }
 
   render() {
-    const { viewport, towns } = this.state;
+    const { viewport, towns, places } = this.state;
     return (
-      <ReactMapGL
-        {...viewport}
-        height={600}
-        width={550}
-        onViewportChange={viewport => this.setState({ viewport })}
-        mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
-      >
-        {towns && this._renderNeighborhood(towns, viewport)}
-      </ReactMapGL>
+      <Container>
+        <Row>
+          <Col>
+            <ReactMapGL
+              {...viewport}
+              height={600}
+              width={550}
+              onViewportChange={viewport => this.setState({ viewport })}
+              mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
+            >
+              {towns && this._renderNeighborhood(towns, viewport)}
+              {places &&
+                places.map((place, index) => this._renderMarker(place, index))}
+            </ReactMapGL>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
