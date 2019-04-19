@@ -1,4 +1,4 @@
-const { Place, Tag, sequelize } = require("../../models");
+const { Place, Tag, sequelize, Estate } = require("../../models");
 const createHealthOptions = require("../seed/seedHealthOptions");
 
 describe("Many To Many Association", () => {
