@@ -8,12 +8,10 @@ module.exports = (sequelize, type) => {
       medRent: type.INTEGER,
       location: type.GEOMETRY()
     },
-    { 
+    {
       timestamps: false,
-      indexes: [
-        {fields: ['location'], using: 'gist'}
-      ],
-    } 
+      indexes: [{ fields: ["location"], using: "gist" }]
+    }
   );
 
   Estate.associate = models => {

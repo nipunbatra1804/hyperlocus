@@ -8,6 +8,7 @@
     "seed:db": "NODE_ENV=development nodemon ./seeders/createTables.js",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
+    "test:watch": "NODE_ENV=test jest --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

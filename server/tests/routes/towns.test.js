@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const request = require("supertest");
 const app = require("../../app");
-const { sequelize } = require("../../models");
+const { sequelize, Estate } = require("../../models");
 const createTowns = require("../seed/seedTowns");
 const createNeighbourhoods = require("../seed/seedNeighbourhoods");
 
@@ -41,6 +41,9 @@ describe("Towns", () => {
     beforeAll(async () => {
       await createNeighbourhoods();
     });
+    const printMagicMethods = modelInstance => {
+      console.log(Object.keys(modelInstance.__proto__));
+    };
     test("returns all towns", async () => {
       const res = await request(app)
         .get("/towns")
@@ -49,6 +52,10 @@ describe("Towns", () => {
         })
         .expect(200);
       console.log(res.body);
+    });
+    test.only("should print magic methods for Estate", async () => {
+      const estate = await Estate.findOne({ where: { id: 1 } });
+      printMagicMethods(estate);
     });
   });
 });
