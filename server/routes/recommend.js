@@ -7,6 +7,7 @@ const router = express.Router();
 /**
  * Expects a POST of the format:
  * {
+ *  "budget": 2000,
  *	"placesOfInterest": [
  *		{"coordinates": [1.297323, 103.802705]}
  *	],
@@ -48,7 +49,7 @@ router
     }
     // If query has a budget, filter out things beyond budget.
     if (query.budget) {
-      //
+      nearestTowns = nearestTowns.filter(town => town.medRent <= query.budget);
     }
     // If query includes user's personality, rank candidates by it.
     if (query.personality) {
@@ -71,7 +72,10 @@ router
     );
 
     // Return best 3 candidate estates.
-    return res.json({"recommendations": nearestTowns.slice(0,3)});
+    if (nearestTowns.length > 3) {
+      nearestTowns = nearestTowns.slice(0,3);
+    }
+    return res.json({"recommendations": nearestTowns});
   });
 
 function getNearestEstates(loc) {
