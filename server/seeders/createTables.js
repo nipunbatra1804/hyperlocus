@@ -2,7 +2,8 @@ const { sequelize } = require("../../server/models/index");
 const seedEstates = require("./seedEstates");
 const {
   createEstateAttributes,
-  createHomeTypes
+  createHomeTypes,
+  updateMedRent
 } = require("./seedEstateAttributes");
 const {
   seedClinics,
@@ -25,4 +26,5 @@ sequelize.sync({ force: true }).then(async () => {
   await seedChildCare();
   await seedPreSchools();
   await seedGreenery();
+  await updateMedRent();
 });

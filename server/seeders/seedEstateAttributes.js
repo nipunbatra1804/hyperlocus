@@ -3,6 +3,8 @@ const csv = require("csv-parser");
 const fs = require("fs");
 const Sequelize = require("sequelize");
 const _ = require("lodash");
+const math = require("mathjs");
+
 const createEstateAttributes = async () => {
   try {
     fs.createReadStream(__dirname + "/estate_indices.csv")
@@ -58,7 +60,6 @@ const createHomeTypes = async () => {
           }
         });
         if (estates && estates.length > 0) {
-          //await estate.addHometype(homeType);
           await Promise.all(
             estates.map(async elem => {
               await elem.addHometype(homeType);
@@ -66,7 +67,7 @@ const createHomeTypes = async () => {
           );
         }
       })
-      .on("end", () => {
+      .on("end", async () => {
         console.log("Loaded attributes data.");
       });
   } catch (err) {
@@ -74,4 +75,21 @@ const createHomeTypes = async () => {
   }
 };
 
-module.exports = { createEstateAttributes, createHomeTypes };
+/** Call this after seeding home types. */
+const updateMedRent = async () => {
+  const allEstates = await Estate.findAll({
+    include: [HomeType]
+  });
+  await Promise.all(
+    allEstates.map(async estate => {
+      const hometypes = estate.hometypes;
+      if (hometypes.length > 0) {
+        const median = math.median(hometypes.map(hometype => hometype.rent));
+        console.log("Median rent for " + estate.now + " " + median); 
+        await estate.update({medRent: median});
+      }
+    })
+  );
+};
+
+module.exports = { createEstateAttributes, createHomeTypes, updateMedRent };
