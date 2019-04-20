@@ -14,7 +14,7 @@ export default class RecPage extends Component {
       recommendations: null
     };
   }
-  sendReco = async (formData, about, address) => {
+  sendReco = async (formData, about, address, tweets) => {
     const location = { coordinates: [1.297323, 103.802705] };
     if (!address && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
@@ -45,7 +45,8 @@ export default class RecPage extends Component {
       placesOfInterest: [location],
       preferences: preferences,
       budget: budget,
-      about
+      about,
+      tweets
     }).then(data => {
       console.log(data.recommendations);
       this.setState({
