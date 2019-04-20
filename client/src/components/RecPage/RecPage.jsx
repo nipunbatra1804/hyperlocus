@@ -4,6 +4,7 @@ import InsightForm from "./InsightForm";
 import { Container, Col, Row } from "reactstrap";
 import { getRecommendation } from "../../services/serviceRecommend";
 import RecTable from "./RecTable";
+import { getAddress } from "../../services/serviceGMapsGeocode";
 
 export default class RecPage extends Component {
   constructor(props) {
@@ -13,15 +14,25 @@ export default class RecPage extends Component {
       recommendations: null
     };
   }
-  sendReco = (formData, about) => {
+  sendReco = async (formData, about, address, tweets) => {
     const location = { coordinates: [1.297323, 103.802705] };
-    if (navigator.geolocation) {
+    if (!address && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
         location.coordinates[0] = pos.coords.latitude;
         location.coordinates[1] = pos.coords.latitude;
       });
+    } else {
+      try {
+        location.coordinates = await getAddress(address).then(data => {
+          const long = data.location.lng;
+          const lat = data.location.lat;
+          return [lat, long];
+        });
+      } catch (err) {
+        console.log(err.message);
+      }
     }
-    
+
     const budget = formData.budget.value;
     const preferences = {};
     for (const key of Object.keys(formData)) {
@@ -34,7 +45,8 @@ export default class RecPage extends Component {
       placesOfInterest: [location],
       preferences: preferences,
       budget: budget,
-      about
+      about,
+      tweets
     }).then(data => {
       console.log(data.recommendations);
       this.setState({
@@ -48,19 +60,21 @@ export default class RecPage extends Component {
   render() {
     const { formLoading, recommendations } = this.state;
     console.log(recommendations);
-    return <Container>
+    return (
+      <Container>
         <Row className="justify-content-center mt-3">
           <Col sm="12" md={{ size: 8 }}>
-      {(recommendations == null) ? (
-            <InsightForm
-              sendRecommendation={this.sendReco}
-              formLoading={formLoading}
-            />
-        ) : (
-            <RecTable towns={recommendations} />
-        )}
-        </Col>
+            {recommendations == null ? (
+              <InsightForm
+                sendRecommendation={this.sendReco}
+                formLoading={formLoading}
+              />
+            ) : (
+              <RecTable towns={recommendations} />
+            )}
+          </Col>
         </Row>
       </Container>
+    );
   }
 }

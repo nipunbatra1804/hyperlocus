@@ -1,10 +1,14 @@
 import axios from "axios";
-const inDev = process.env.NODE_ENV !== "production";
+import { hosts, isValidHost } from "./hosts";
 
+const host = window.location.host;
+const protocol = window.location.protocol;
+const url = isValidHost(host)
+  ? `${protocol}//${hosts[window.location.host]}`
+  : "";
+console.log(url);
 const hyperlocusApi = axios.create({
-  baseURL: inDev
-    ? "http://localhost:4000/api"
-    : "http://hyperlocus-server.herokuapp.com/api",
+  baseURL: url,
   withCredentials: true
 });
 
