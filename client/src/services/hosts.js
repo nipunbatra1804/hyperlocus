@@ -1,5 +1,5 @@
 const dev = "localhost:3000";
-const prod = "hyperloc.us";
+const prod = "www.hyperloc.us";
 
 const hosts = {
   [dev]: "localhost:4000/api",
