@@ -41,26 +41,19 @@ export default class RecPage extends Component {
   render() {
     const { formLoading, recommendations } = this.state;
     console.log(recommendations);
-    return !recommendations ? (
-      <Container>
+    return <Container>
         <Row className="justify-content-center mt-3">
           <Col sm="12" md={{ size: 8 }}>
-            {" "}
+      {(recommendations == null) ? (
             <InsightForm
               sendRecommendation={this.sendReco}
               formLoading={formLoading}
             />
-          </Col>
-        </Row>
-      </Container>
-    ) : (
-      <Container>
-        <Row className="justify-content-center mt-3">
-          <Col sm="12" md={{ size: 8 }}>
+        ) : (
             <RecTable towns={recommendations} />
-          </Col>
+        )}
+        </Col>
         </Row>
       </Container>
-    );
   }
 }

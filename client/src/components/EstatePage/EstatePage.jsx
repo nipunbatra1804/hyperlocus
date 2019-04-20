@@ -76,7 +76,6 @@ export default class EstatePage extends Component {
   async componentDidMount() {
     const townId = this.props.match.params.town;
     const estate = await getTowns(townId);
-    console.log(estate[0].location);
     if (estate) {
       const [minLng, minLat, maxLng, maxLat] = bbox(estate[0].location);
       console.log(estate.location);
