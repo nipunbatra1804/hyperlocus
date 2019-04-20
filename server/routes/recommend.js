@@ -1,8 +1,26 @@
 const express = require("express");
 const math = require("mathjs");
+const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+const Twitter = require("twitter");
 const { Estate, EstateAttributes } = require("../models");
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const router = express.Router();
+
+const personality_insights = new PersonalityInsightsV3({
+  iam_apikey: process.env.WATSON_API_KEY,
+  version: '2017-10-13',
+  url: 'https://gateway.watsonplatform.net/personality-insights/api/'
+});
+
+const twitter = new Twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+});
 
 /**
  * Expects a POST of the format:
@@ -25,7 +43,8 @@ const router = express.Router();
  *		"conscientiousness": 0.7,
  *		"agreeableness": 0.2,
  * 		"neuroticism": 0.4
- *  }
+ *  },
+ *  "about" // enter some text
  * }
  */
 router
@@ -51,11 +70,20 @@ router
     if (query.budget) {
       nearestTowns = nearestTowns.filter(town => town.medRent <= query.budget);
     }
+    var user_personality; 
+    if (query.twitterPersonality) {
+      const tweets = await fetchTweets(query.twitterPersonality);
+      const tweetsPersonality = await fetchPersonality(tweets);
+      user_personality = getUserPersonalityFromWatson(tweetsPersonality);
+    }
     // If query includes user's personality, rank candidates by it.
     if (query.personality) {
+      user_personality = query.personality;
+    }
+    if (user_personality) {
       // Handle personality preferences.
       nearestTowns.forEach(function(town) {
-        addPersonalityScore(town, query.personality);
+        addPersonalityScore(town, user_personality);
       });
     }
     // If query includes user's preferences, rank candidates by it.
@@ -146,5 +174,97 @@ function getUserPersonalityVector(u) {
     u.openness, u.extroversion, u.conscientiousness, u.agreeableness, u.neuroticism
   ];
 }
+
+function getUserPersonalityFromWatson(w) {
+  const u = {};
+  for (const trait of w.personality) {
+    if (trait.trait_id == 'big5_openness') {
+      u.openness = trait.raw_score;
+    }
+    if (trait.trait_id == 'big5_conscientiousness') {
+      u.conscientiousness = trait.raw_score;
+    }
+    if (trait.trait_id == 'big5_extraversion') {
+      u.extroversion = trait.raw_score;
+    }
+    if (trait.trait_id == 'big5_agreeableness') {
+      u.agreeableness = trait.raw_score;
+    }
+    if (trait.trait_id == 'big5_neuroticism') {
+      u.neuroticism = trait.raw_score;
+    }
+  }
+  return u;
+}
+
+const fetchPersonality = (tweets) => {
+  const content = {contentItems: tweets};
+  return new Promise((resolve, reject) => {
+     let params = {
+      // Content items are tweets.
+      content: JSON.stringify(content),
+      consumption_preferences: false,
+      raw_scores: true,
+      headers: {
+        'accept-language': 'en',
+        'accept': 'application/json'
+      }
+    };
+    personality_insights.profile(params, function (error, personalityProfile) {
+      if (error && error.code == 400) {
+        reject(Error("Ouch! You either do not have sufficient tweets, or your language is not supported. Sorry."));
+      } else if (error) {
+        reject(error);
+      } else {
+        resolve(personalityProfile);
+      }
+    });
+  });
+};
+
+const fetchTweets = (username) => {
+  return new Promise((resolve, reject) => {
+
+    let params = {
+      screen_name: username,
+      count: 200,
+      include_rts: false,
+      trim_user: true,
+      exclude_replies: true,
+      tweet_mode: "extended"
+    };
+
+    let tweets = [];
+
+    const fetchTweets = (error, newTweets) => {
+      if (error) {
+        reject(Error(error));
+      }
+      // Filter out tweets with only relevant info
+      filteredTweets = newTweets.map(function (tweet) {
+        return {
+          id: tweet.id_str,
+          language: tweet.lang,
+          contenttype: 'text/plain',
+          content: tweet.full_text.replace('[^(\\x20-\\x7F)]*', ''),
+          created: Date.parse(tweet.created_at),
+          reply: tweet.in_reply_to_screen_name != null
+        };
+      });
+      // check if tweets are actually retrieved and get more tweets if yes.
+      if (newTweets.length > 1 && tweets.length < 25) {
+        tweets = tweets.concat(filteredTweets);
+        params.max_id = tweets[tweets.length - 1].id - 1;
+        twitter.get('statuses/user_timeline', params, fetchTweets);
+      } else {
+        // if there are no more tweets to retrieve, return already retrieved tweets
+        resolve(tweets);
+      }
+    };
+    twitter.get('statuses/user_timeline', params, fetchTweets);
+
+  });
+};
+
 
 module.exports = router;
