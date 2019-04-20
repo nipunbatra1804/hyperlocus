@@ -7,19 +7,21 @@ const options = [
 ];
 
 const defaultObject = {
-  health: {min: 0, max: 1, value: 0.5, step: 0.01},
-  entertainment: {min: 0, max: 1, value: 0.5, step: 0.01},
-  food: {min: 0, max: 1, value: 0.5, step: 0.01},
-  children: {min: 0, max: 1, value: 0.5, step: 0.01},
-  elderly: {min: 0, max: 1, value: 0.5, step: 0.01},
-  greenery: {min: 0, max: 1, value: 0.5, step: 0.01},
-  budget: {min: 1500, max: 3500, value: 2500, step: 100}, 
+  health: { min: 0, max: 1, value: 0.5, step: 0.01 },
+  entertainment: { min: 0, max: 1, value: 0.5, step: 0.01 },
+  food: { min: 0, max: 1, value: 0.5, step: 0.01 },
+  children: { min: 0, max: 1, value: 0.5, step: 0.01 },
+  elderly: { min: 0, max: 1, value: 0.5, step: 0.01 },
+  greenery: { min: 0, max: 1, value: 0.5, step: 0.01 },
+  budget: { min: 1500, max: 3500, value: 2500, step: 100 }
 };
 
 export default function InsightForm(props) {
   const [field, setField] = useState(defaultObject);
   const [names, setNames] = useState(defaultObject);
   const [about, setAbout] = useState("");
+  const [address, setAdress] = useState("");
+  const [userLoc, setUserLoc] = useState(false);
 
   const handleChange = (e, { name, value }) => {
     const _field = { ...field };
@@ -28,6 +30,9 @@ export default function InsightForm(props) {
   };
   const handleAbout = (e, { value }) => {
     setAbout(value);
+  };
+  const handleAddress = (e, { value }) => {
+    setAdress(value);
   };
 
   const handleName = (e, { name, value }) => {
@@ -38,7 +43,10 @@ export default function InsightForm(props) {
   const handleSubmit = async event => {
     event.preventDefault();
     const { sendRecommendation } = props;
-    sendRecommendation(field, about);
+    sendRecommendation(field, about, address);
+  };
+  const handleCheck = event => {
+    setUserLoc(!userLoc);
   };
 
   const preferences = Object.keys(field);
@@ -59,6 +67,18 @@ export default function InsightForm(props) {
           onChange={handleName}
         />
       </Form.Group>
+      <Form.Input
+        disabled={userLoc}
+        label="Address"
+        placeholder="or Post code"
+        onChange={handleAddress}
+        value={address}
+      />
+      <Form.Checkbox
+        label="Use my current location"
+        checked={userLoc}
+        onChange={handleCheck}
+      />
       {preferences.map(pref => {
         return (
           <Form.Input
@@ -80,7 +100,6 @@ export default function InsightForm(props) {
         placeholder="Tell us more about you..."
         onChange={handleAbout}
       />
-      <Form.Checkbox label="I agree to the Terms and Conditions" />
       <Form.Button>Submit</Form.Button>
     </Form>
   );
