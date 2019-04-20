@@ -40,13 +40,13 @@ export default class RecPage extends Component {
         preferences[key] = formData[key].value;
       }
     }
-    console.log({ location, preferences, budget });
+    console.log({ tweets });
     getRecommendation({
       placesOfInterest: [location],
       preferences: preferences,
       budget: budget,
+      twitterPersonality: tweets,
       about,
-      tweets
     }).then(data => {
       console.log(data.recommendations);
       this.setState({
