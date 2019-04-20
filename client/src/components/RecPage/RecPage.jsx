@@ -22,11 +22,18 @@ export default class RecPage extends Component {
       });
     }
     
-    const preferences = formData;
-    console.log({ location, preferences });
+    const budget = formData.budget.value;
+    const preferences = {};
+    for (const key of Object.keys(formData)) {
+      if (key !== "budget" && formData[key]) {
+        preferences[key] = formData[key].value;
+      }
+    }
+    console.log({ location, preferences, budget });
     getRecommendation({
       placesOfInterest: [location],
-      preferences,
+      preferences: preferences,
+      budget: budget,
       about
     }).then(data => {
       console.log(data.recommendations);

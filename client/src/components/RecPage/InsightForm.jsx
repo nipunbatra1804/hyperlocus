@@ -7,12 +7,13 @@ const options = [
 ];
 
 const defaultObject = {
-  health: 0.5,
-  entertainment: 0.5,
-  food: 0.5,
-  children: 0.5,
-  elderly: 0.5,
-  greenery: 0.5
+  health: {min: 0, max: 1, value: 0.5, step: 0.01},
+  entertainment: {min: 0, max: 1, value: 0.5, step: 0.01},
+  food: {min: 0, max: 1, value: 0.5, step: 0.01},
+  children: {min: 0, max: 1, value: 0.5, step: 0.01},
+  elderly: {min: 0, max: 1, value: 0.5, step: 0.01},
+  greenery: {min: 0, max: 1, value: 0.5, step: 0.01},
+  budget: {min: 1500, max: 3500, value: 2500, step: 100}, 
 };
 
 export default function InsightForm(props) {
@@ -22,7 +23,7 @@ export default function InsightForm(props) {
 
   const handleChange = (e, { name, value }) => {
     const _field = { ...field };
-    _field[name] = parseFloat(value);
+    _field[name].value = parseFloat(value);
     setField(_field);
   };
   const handleAbout = (e, { value }) => {
@@ -62,14 +63,14 @@ export default function InsightForm(props) {
         return (
           <Form.Input
             key={pref}
-            label={`${pref}: ${field[pref]} `}
-            min={0}
-            max={1}
+            label={`${pref}: ${field[pref].value} `}
+            min={field[pref].min}
+            max={field[pref].max}
             name={pref}
             onChange={handleChange}
-            step={0.01}
+            step={field[pref].step}
             type="range"
-            value={field[pref]}
+            value={field[pref].value}
           />
         );
       })}
