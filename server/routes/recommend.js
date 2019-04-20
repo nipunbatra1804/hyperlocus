@@ -252,10 +252,14 @@ const fetchTweets = (username) => {
         };
       });
       // check if tweets are actually retrieved and get more tweets if yes.
-      if (newTweets.length > 1 && tweets.length < 25) {
+      if (newTweets.length > 1) {
         tweets = tweets.concat(filteredTweets);
-        params.max_id = tweets[tweets.length - 1].id - 1;
-        twitter.get('statuses/user_timeline', params, fetchTweets);
+        if (tweets.length < 50) {
+          params.max_id = tweets[tweets.length - 1].id - 1;
+          twitter.get('statuses/user_timeline', params, fetchTweets);
+        } else {
+          resolve(tweets);
+        }
       } else {
         // if there are no more tweets to retrieve, return already retrieved tweets
         resolve(tweets);
