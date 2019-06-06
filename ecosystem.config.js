@@ -5,7 +5,7 @@ module.exports = {
       cwd: "./client",
       script: "npm",
       args: "run start",
-      watch: false,
+      watch: true,
       max_restarts: 0,
       autorestart: false,
       env: {
