@@ -78,14 +78,12 @@ export default class EstatePage extends Component {
     const estate = await getTowns(townId);
     if (estate) {
       const [minLng, minLat, maxLng, maxLat] = bbox(estate[0].location);
-      console.log(estate.location);
       const viewport = new WebMercatorViewport(this.state.viewport);
       const { longitude, latitude, zoom } = viewport.fitBounds(
         [[minLng, minLat], [maxLng, maxLat]],
         { padding: 40 }
       );
       const places = await getOutletByTown(townId);
-      console.log(places);
       this.setState({
         viewport: {
           ...this.state.viewport,
