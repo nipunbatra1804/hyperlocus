@@ -3,7 +3,11 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.js")[env];
 
 try {
-  sequelize = new Sequelize(config);
+  if (env === "production") {
+    sequelize = new Sequelize(config.url, config.options);
+  } else if (env === "production_aws") {
+    sequelize = new Sequelize(config);
+  }
 } catch {
   sequelize = new Sequelize(
     config.database,

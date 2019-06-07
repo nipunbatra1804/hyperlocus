@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const port = process.env.PORT;
 
-sequelize.sync().then(async () => {
+sequelize.sync({ force: true }).then(async () => {
   /*await createFoodOptions();
   await createHealthOptions();
   await createShopOptions();
