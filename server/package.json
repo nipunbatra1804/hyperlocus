@@ -7,7 +7,7 @@
     "start:dev": "NODE_ENV=development nodemon server.js",
     "seed:db": "NODE_ENV=development nodemon ./seeders/createTables.js",
     "seed:rds": "NODE_ENV=production nodemon ./seeders/createTables.js",
-    "seed:heroku": "DATABASE_URL=$(heroku config:get DATABASE_URL -a hyperlocus-server) NODE_ENV=production_seed nodemon ./seeders/createTables.js",
+    "seed:heroku": "DATABASE_URL=$(heroku config:get DATABASE_URL -a hyperlocus-server) && NODE_ENV=production_seed nodemon ./seeders/createTables.js",
     "restart": "pm2 startOrRestart ecosystem.config.js",
     "deploy": "pm2 deploy ecosystem.config.js production",
     "test:watch": "NODE_ENV=test jest --watch --runInBand",

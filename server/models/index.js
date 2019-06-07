@@ -9,6 +9,13 @@ try {
     sequelize = new Sequelize(config);
   } else if (env === "production_seed") {
     sequelize = new Sequelize(config);
+  } else {
+    sequelize = new Sequelize(
+      config.database,
+      config.username,
+      config.password,
+      config.options
+    );
   }
 } catch {
   sequelize = new Sequelize(

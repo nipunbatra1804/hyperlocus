@@ -36,9 +36,6 @@ const createTables = async () => {
   await seedClinics();
   await seedSuperMarkets();
   await seedFoodOptions();
-  await seedChildCare();
-  await seedPreSchools();
-  await seedGreenery();
   await updateMedRent();
 };
 

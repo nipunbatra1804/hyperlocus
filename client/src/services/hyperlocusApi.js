@@ -8,7 +8,7 @@ const url = isValidHost(host)
   : "";
 console.log(url);
 const hyperlocusApi = axios.create({
-  baseURL: url,
+  baseURL: `${url}`,
   withCredentials: true
 });
 
