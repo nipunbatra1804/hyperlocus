@@ -1,0 +1,23 @@
+{
+  "name": "hyperlocus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ecosystem.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm install --prefix client && npm install --prefix server",
+    "start": "npm start --prefix server",
+    "client-build": "npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nipunbatra1804/hyperlocus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nipunbatra1804/hyperlocus/issues"
+  },
+  "homepage": "https://github.com/nipunbatra1804/hyperlocus#readme"
+}
