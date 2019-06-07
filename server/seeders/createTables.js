@@ -16,18 +16,18 @@ const {
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-sequelize.sync({ force: true }).then(async () => {
-  await seedEstates();
-  await createEstateAttributes();
-  await createHomeTypes();
-  await seedClinics();
-  await seedSuperMarkets();
-  await seedFoodOptions();
-  await seedChildCare();
-  await seedPreSchools();
-  await seedGreenery();
-  await updateMedRent();
-});
+// sequelize.sync({ force: true }).then(async () => {
+//   await seedEstates();
+//   await createEstateAttributes();
+//   await createHomeTypes();
+//   await seedClinics();
+//   await seedSuperMarkets();
+//   await seedFoodOptions();
+//   await seedChildCare();
+//   await seedPreSchools();
+//   await seedGreenery();
+//   await updateMedRent();
+// });
 
 const createTables = async () => {
   await seedEstates();
