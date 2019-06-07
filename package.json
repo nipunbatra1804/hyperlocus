@@ -8,6 +8,7 @@
     "install": "npm install --prefix client && npm install --prefix server",
     "start": "npm start --prefix server",
     "client-build": "npm run build --prefix client",
+    "seed-db": "npm run seed:heroku --prefix server",
     "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {

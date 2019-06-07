@@ -7,6 +7,8 @@ try {
     sequelize = new Sequelize(config.url, config.options);
   } else if (env === "production_aws") {
     sequelize = new Sequelize(config);
+  } else if (env === "production_seed") {
+    sequelize = new Sequelize(config);
   }
 } catch {
   sequelize = new Sequelize(

@@ -30,5 +30,11 @@ module.exports = {
     options: {
       dialect: "postgres"
     }
+  },
+  production_seed: {
+    url: process.env.DATABASE_URL,
+    dialect: "postgres",
+    protocol: "postgres",
+    ssl: true
   }
 };
